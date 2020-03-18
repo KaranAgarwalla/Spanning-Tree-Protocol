@@ -28,27 +28,27 @@ __________
 __________
 The input is specified by the `trace flag` in the first line. The trace flag is set to 1 prints all the configuration messages and data transfer messages that are exchanged during the simulation.
 The next line specifies the number of bridges.
-Each line starts with bridge id preceded by character 'B' denoting a bridge and followed by a set of lan segments.
+Each line starts with bridge id preceded by character 'B' denoting a bridge and followed by a set of LAN segments.
 The smaller the bridge id, the higher the priority. 
-The lan segments have priority in lexicographic order(the smaller, the higher priority).
+The LAN segments have priority in lexicographic order(the smaller, the higher priority).
 Sample line:
 B1: A B C
-Then the next few lines specify each lan segment followed by a set of hosts in format H + Host ID.
+Then the next few lines specify each LAN segment followed by a set of hosts in format H + Host ID.
 
-> **Note:** Each lan segment needs to be specified even if no host resides on the lan.
+> **Note:** Each LAN segment needs to be specified even if no host resides on the lan.
 
 The next line contains the number of data transfers that have to be simulated.
 Each data transfer is specified by the source host and destination host.
 H1 H10
-> **Note:** Each host can be on a single lan segment.
+> **Note:** Each host can be on a single LAN segment.
 
 
 ## Algorithm:
 
 ## Spanning Tree Protocol:
 The spanning tree protocol is simulated by member function `'bridgesim::simulation()`. 
-Each bridge object has a member variable `lan_status` which maps each lan segment to "NP"(or Null Port), "DP"(or Designated Port), or "RP"(Root Port).
-> **Note:** Throughout this project lan segments and ports are used interchangeably as port numbers are considered the same as names of lan segments.
+Each bridge object has a member variable `lan_status` which maps each LAN segment to "NP"(or Null Port), "DP"(or Designated Port), or "RP"(Root Port).
+> **Note:** Throughout this project LAN segments and ports are used interchangeably as port numbers are considered the same as names of LAN segments.
 
 Each bridge object also has member variables `root_bridge`(stores the root that bridge thinks), `dist`(its distance from root), and `next_bridge`(sending bridge for the current root) for the best configuration message.
 > **Note:** The simulation is made simpler by assuming that the bridge forwards the best message at time = t.
@@ -79,12 +79,12 @@ Once there is no change in the status of different ports of different bridges, t
 ## Learning Bridge Algorithm
 Each transfer of the learning bridge algorithm is simulated by `bridgesim::transfer()`.
 
-In each instance of network topology, we store a member variable which maps each host to the lan on which it resides. Also, each lan is mapped to a vector of hosts on the lan.
-> **Note:** Each host can reside only on one lan
+In each instance of network topology, we store a member variable which maps each host to the LAN on which it resides. Also, each LAN is mapped to a vector of hosts on the LAN.
+> **Note:** Each host can reside only on one LAN segment
 
 Each bridge object stores `forwarding table` and `active_ports` (the ports that are functional once spanning tree protocol finishes). 
 
-In each transfer, we model a sample message transferred from `src` to `dest`. So we maintain a queue of lan segments `lans_to_check` on which the message would travel. Each lan segment has two variables: lan ID and bridge ID. Then it forwards on all those bridges other than the current bridge ID. Then each bridge forwards on a unique lan segment if it has an entry in the forwarding table for it or else forwards on all the outgoing lan segments other than current lan.
+In each transfer, we model a sample message transferred from `src` to `dest`. So we maintain a queue of LAN segments `lans_to_check` on which the message would travel. Each LAN segment has two variables: LAN ID and bridge ID. Then it forwards on all those bridges other than the current bridge ID. Then each bridge forwards on a unique LAN segment if it has an entry in the forwarding table for it or else forwards on all the outgoing LAN segments other than current LAN.
 
 At end of the learning bridge algorithm all the intermediate bridges have updated the entries for source of the message. 
 
@@ -101,4 +101,4 @@ s or r represents send or receive event
 #### t s|r Bk X --> Y
 This means at time t, at Bridge Bk, a packet arrived (r) or was sent (s), where the packet source address was on LAN X and packet destination address was on LAN Y.
 
-> **Note:** All outputs are lexicographic   
+> **Note:** All outputs are lexicographically sorted
