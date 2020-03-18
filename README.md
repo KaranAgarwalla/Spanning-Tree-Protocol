@@ -15,13 +15,13 @@ Declare struct `bridgesim` for network topology and algorithm simulations
 Specifies the member functions for bridgesim struct
 #### main.cpp:
 Declares the main function which constructs objects and call member functions for given input
-### SpanningTreeProtocol-RadiaPerlman.pdf:
+#### SpanningTreeProtocol-RadiaPerlman.pdf:
 Contains the research paper pertaining to Spanning Tree Protocol
-### inputs/
+#### inputs/
 Contains multiple input files to the program
-### outputs/
+#### outputs/
 Contains the corresponding outputs
-### checker.py:
+#### checker.py:
 An autograder to check for inputs and outputs
 __________
 ### Input Format:
