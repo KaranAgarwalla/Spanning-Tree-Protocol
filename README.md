@@ -4,9 +4,9 @@ The given code implements the spanning tree protocol to get a loop-free network 
 __________
 ### File Structure:
 __________
-Here I specify the details of the individual files in the repository.
+Here I specify the details of the individual files in the repository
 #### bridge.h:
-Declares struct `message`(configuration messages for spanning tree protocol), `learning_message`(a sample data transfer message) and `bridge`.
+Declares struct `message`(configuration messages for spanning tree protocol), `learning_message`(a sample data transfer message) and `bridge`
 #### bridge.cpp:
 Specifies the member functions for bridge struct and some additional member functions
 #### bridgesim.h:
@@ -15,7 +15,14 @@ Declare struct `bridgesim` for network topology and algorithm simulations
 Specifies the member functions for bridgesim struct
 #### main.cpp:
 Declares the main function which constructs objects and call member functions for given input
-
+### SpanningTreeProtocol-RadiaPerlman.pdf:
+Contains the research paper pertaining to Spanning Tree Protocol
+### inputs/
+Contains multiple input files to the program
+### outputs/
+Contains the corresponding outputs
+### checker.py:
+An autograder to check for inputs and outputs
 __________
 ### Input Format:
 __________
